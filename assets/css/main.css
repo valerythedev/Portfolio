@@ -2335,7 +2335,7 @@ input, select, textarea {
 			font-weight: 400;
 		}
 
-		.icon > .label {
+		.icon > .icon.solid:before {
 			display: none;
 		}
 
@@ -3878,4 +3878,8 @@ input, select, textarea {
 			padding: 4rem;
 		}
 
+	}
+
+	.resume{
+		border-radius: 2px solid black;
 	}
