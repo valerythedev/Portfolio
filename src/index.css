@@ -1,0 +1,203 @@
+:root {
+  --bg: #262626;
+  --offwhite: #e8e4dc;
+  --orange-glow: rgba(128, 52, 9, 0.6);
+  --nav-h: 52px;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: #e8e4dc;
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  min-height: 100vh;
+}
+
+/* Stacked panels (3D cover feeling on scroll) */
+.stack-container {
+  position: relative;
+  padding-bottom: 0;
+}
+
+.stack-panel {
+  position: relative;
+  top: auto;
+  z-index: 2;
+  background: rgba(38, 38, 38, 0.94);
+  backdrop-filter: blur(6px);
+  transform-style: preserve-3d;
+  will-change: transform, filter, box-shadow;
+  box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+  border-radius: 0px;
+  margin: 0;
+  width: 100%;
+  max-width: none;
+  min-height: auto;
+}
+
+/* Keep panel edges aligned with existing layout paddings */
+.stack-panel > .stack-panel-inner {
+  border-radius: inherit;
+}
+
+/* CRT scanline overlay */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 1px,
+    rgba(0, 0, 0, 0.15) 1px,
+    rgba(0, 0, 0, 0.15) 2px
+  );
+  opacity: 0.04;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* Custom scrollbar */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #803409 var(--bg);
+}
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+*::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+*::-webkit-scrollbar-thumb {
+  background: #803409;
+  border-radius: 4px;
+}
+
+/* Blinking cursor */
+.blink {
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  0%,
+  50% {
+    opacity: 1;
+  }
+  51%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Orange glow utility */
+.orange-glow {
+  text-shadow: 0 0 10px var(--orange-glow);
+}
+
+/* VG 3D cylindrical container */
+.vg-3d-wrap {
+  transform-style: preserve-3d;
+  perspective-origin: 50% 50%;
+}
+
+.vg-3d {
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  will-change: transform;
+}
+
+/* ASCII VG hover color cycle */
+.ascii-vg {
+  transition: color 0.25s ease-out;
+}
+
+.ascii-vg:hover {
+  animation: vg-color-cycle 1.2s linear infinite;
+}
+
+@keyframes vg-color-cycle {
+  0% {
+    color: #803409; /* primary orange */
+  }
+  25% {
+    color: #a0450c; /* bright orange */
+  }
+  50% {
+    color: #f97316; /* amber */
+  }
+  75% {
+    color: #22c55e; /* green accent */
+  }
+  100% {
+    color: #38bdf8; /* cyan accent */
+  }
+}
+
+/* Focus visible ring */
+*:focus {
+  outline: none;
+}
+*:focus-visible {
+  outline: 2px solid #803409;
+  outline-offset: 2px;
+}
+
+/* Reduced motion: disable animations */
+@media (prefers-reduced-motion: reduce) {
+  .blink,
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+  body::after {
+    display: none;
+  }
+}
+
+/* Skip to main — keyboard users */
+.skip-link {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+.skip-link:focus {
+  clip: auto;
+  clip-path: none;
+  height: auto;
+  overflow: visible;
+  position: fixed;
+  left: 1rem;
+  top: 1rem;
+  z-index: 20000;
+  width: auto;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--orange-border, #803409);
+  border-radius: 0.25rem;
+  background: var(--bg);
+  color: var(--offwhite);
+  font-family: inherit;
+  font-size: 0.875rem;
+  text-decoration: none;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(128, 52, 9, 0.5);
+}
+
