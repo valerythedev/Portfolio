@@ -79,7 +79,11 @@ function App() {
       <Nav />
       <TerminalScrollUp />
       <BackgroundAudio />
-      <main id="main-content" className="relative z-10" tabIndex={-1}>
+      <main
+        id="main-content"
+        className="relative z-10 pb-[max(15rem,calc(env(safe-area-inset-bottom,0px)+11rem))]"
+        tabIndex={-1}
+      >
         <StackedPanels />
         <div className="stack-container">
           <Hero />

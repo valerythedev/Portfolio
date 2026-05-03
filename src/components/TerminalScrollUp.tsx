@@ -36,8 +36,8 @@ export default function TerminalScrollUp() {
   if (!visible) return null
 
   return (
-    <div className="pointer-events-none fixed inset-x-0 bottom-0 z-[10001] flex justify-center px-4 pb-[max(5rem,env(safe-area-inset-bottom))] pt-8 md:pb-[max(1rem,env(safe-area-inset-bottom))]">
-      <div className="pointer-events-auto w-full max-w-md overflow-hidden rounded-t-md border border-border border-b-0 bg-bg/95 shadow-[0_-8px_40px_rgba(0,0,0,0.45)] backdrop-blur-md">
+    <div className="pointer-events-none fixed inset-x-0 bottom-0 z-[10001] flex justify-start px-2 pb-[max(5rem,env(safe-area-inset-bottom))] pt-8 sm:justify-center sm:px-4 md:pb-[max(1rem,env(safe-area-inset-bottom))]">
+      <div className="pointer-events-auto w-[min(100%,18rem)] max-w-sm overflow-hidden rounded-t-md border border-border border-b-0 bg-bg/95 shadow-[0_-8px_40px_rgba(0,0,0,0.45)] backdrop-blur-md sm:w-full">
         <div className="flex items-center gap-2 border-b border-border bg-surface/90 px-3 py-1.5">
           <span className="h-2 w-2 shrink-0 rounded-full bg-red-500" aria-hidden />
           <span className="h-2 w-2 shrink-0 rounded-full bg-yellow-400" aria-hidden />
